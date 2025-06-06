@@ -20,7 +20,7 @@ If you use this codebase in your research, please cite:
 ```bibtex
 @misc{kafetzis2025videoqoe,
   title={Video Quality Monitoring for Remote Autonomous Vehicle Control},
-  author={Dimitrios Kafetzis},
+  author={D. Kafetzis and N. Fotiou and  S. Argyropoulos and J. Nasreddine and I. Koutsopoulos },
   year={2025},
   eprint={2506.03166},
   archivePrefix={arXiv},
