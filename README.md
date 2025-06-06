@@ -1,6 +1,34 @@
 # Time Series Forecasting Models for Video QoE Prediction
 
-This repository provides a comprehensive framework for forecasting video Quality of Experience (QoE) based on network and mobility metrics. It includes several deep learning architectures (Linear Regressor, DNN, LSTM, GRU, Transformer) alongside utilities for dataset generation, hyperparameter tuning, model evaluation, and inference.
+## 📄 Academic Paper Reference
+
+This repository contains the implementation codebase for the research paper:
+
+**"Video Quality Monitoring for Remote Autonomous Vehicle Control"**  
+*Authors:* Dimitrios Kafetzis  
+*Conference:* IEEE MeditCom 2025  
+*ArXiv:* [https://arxiv.org/abs/2506.03166](https://arxiv.org/abs/2506.03166)
+
+### Paper Abstract
+
+The delivery of high-quality, low-latency video streams is critical for remote autonomous vehicle control, where operators must intervene in real time. However, reliable video delivery over Fourth/Fifth-Generation (4G/5G) mobile networks is challenging due to signal variability, mobility-induced handovers, and transient congestion. In this paper, we present a comprehensive blueprint for an integrated video quality monitoring system, tailored to remote autonomous vehicle operation. Our proposed system includes subsystems for data collection onboard the vehicle, video capture and compression, data transmission to edge servers, real-time streaming data management, Artificial Intelligence (AI) model deployment and inference execution, and proactive decision-making based on predicted video quality. The AI models are trained on a hybrid dataset that combines field-trial measurements with synthetic stress segments and covers Long Short-Term Memory (LSTM), Gated Recurrent Unit (GRU), and encoder-only Transformer architectures. As a proof of concept, we benchmark 20 variants from these model classes together with feed-forward Deep Neural Network (DNN) and linear-regression baselines, reporting accuracy and inference latency. Finally, we study the trade-offs between onboard and edge-based inference. We further discuss the use of explainable AI techniques to enhance transparency and accountability during critical remote-control interventions. Our proactive approach to network adaptation and Quality of Experience (QoE) monitoring aims to enhance remote vehicle operation over next-generation wireless networks.
+
+### Citation
+
+If you use this codebase in your research, please cite:
+
+```bibtex
+@misc{kafetzis2025videoqoe,
+  title={Video Quality Monitoring for Remote Autonomous Vehicle Control},
+  author={Dimitrios Kafetzis},
+  year={2025},
+  eprint={2506.03166},
+  archivePrefix={arXiv},
+  primaryClass={cs.NI}
+}
+```
+
+---
 
 ## Table of Contents
 - [Introduction](#introduction)
@@ -381,6 +409,10 @@ The validation process generates:
 3. **CSV files** for further analysis:
    - validation_summary.csv: Summary metrics for all models
    - model_detailed_results.csv: File-by-file predictions and errors
+
+## Contributing
+
+We welcome contributions! Please submit issues and pull requests on GitHub.
 
 ## License
 
