@@ -5,7 +5,7 @@
 This repository contains the implementation codebase for the research paper:
 
 **"Video Quality Monitoring for Remote Autonomous Vehicle Control"**  
-*Authors:* Dimitrios Kafetzis  
+*First author:* Dimitrios Kafetzis  
 *Conference:* IEEE MeditCom 2025  
 *ArXiv:* [https://arxiv.org/abs/2506.03166](https://arxiv.org/abs/2506.03166)
 
