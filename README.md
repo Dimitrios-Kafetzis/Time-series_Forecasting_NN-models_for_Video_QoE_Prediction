@@ -7,6 +7,7 @@
 - [Installation](#installation)
 - [Usage](#usage)
   - [Generating Mock Datasets](#generating-mock-datasets)
+  - [Generating Network Datasets](#generating-network-datasets)
   - [Running Experiments](#running-experiments)
   - [Training All Models](#training-all-models)
   - [Testing All Models](#testing-all-models)
@@ -47,6 +48,9 @@ Video streaming applications require constant monitoring of network conditions t
   - **Inference Mode:** JSON files with QoE set to null for inference testing.
   - **Augmented Mode:** 5‑second windows with per‑second measurements and aggregated QoE, with optional statistical features.
 
+- **Network Dataset Generation:**
+  The network_dataset_generator.py script creates realistic network datasets by reusing existing JSON files and organizing them into predictable urban network patterns.
+
 - **Inference Support:**
   The run_inference.py script loads a saved model and scaler, processes new JSON input (supporting both standard and augmented formats), and outputs a predicted QoE value.
 
@@ -56,59 +60,8 @@ Video streaming applications require constant monitoring of network conditions t
 - **Automated Hyperparameter Tuning:**
   The project supports automated tuning for all model types via Keras Tuner.
 
-## Directory Structure
-
-The repository is organized as follows:
-
-├── experiment_runner.py              # Experiment driver for standard dataset experiments  
-├── experiment_runner_v2.py           # Enhanced experiment runner with augmented dataset support  
-├── generate_mock_dataset.py          # Script to generate synthetic JSON datasets (dataset, inference, augmented)  
-├── prepare_validation_data.py        # Script to create validation dataset pairs (with/without QoE)
-├── run_inference.py                  # Inference script for new JSON inputs using saved models  
-├── test_models.py                    # Script for evaluating models and measuring inference latency  
-├── validate_models.py                # Script for controlled validation experiments with ground truth
-├── timeseries_forecasting_models_v2.py  # Model definitions, training, and hyperparameter tuning (v2)  
-├── timeseries_forecasting_models_v3.py  # Updated model definitions and training pipeline (v3)  
-├── timeseries_forecasting_models_v5.py  # Latest model implementations with Linear, DNN, and self-attention models (v5)  
-├── train_all_models_v5.sh            # Shell script to automate training of all model variants  
-├── test_all_models.sh                # Shell script to test all models and generate comparison reports  
-├── forecasting_models_v5/            # Directory containing trained model files  
-│   ├── model_evaluation_report.txt   # Comprehensive model evaluation report  
-│   ├── model_evaluation_results.csv  # CSV with evaluation metrics for all models  
-│   ├── linear_basic.h5               # Pre-trained Linear model (basic)  
-│   ├── linear_with_l1_reg.h5         # Pre-trained Linear model with L1 regularization  
-│   ├── linear_with_l2_reg.h5         # Pre-trained Linear model with L2 regularization  
-│   ├── linear_with_elastic_net.h5    # Pre-trained Linear model with ElasticNet regularization  
-│   ├── dnn_basic.h5                  # Pre-trained DNN model (basic)  
-│   ├── dnn_deep.h5                   # Pre-trained DNN with deeper architecture  
-│   ├── dnn_with_elu.h5               # Pre-trained DNN with ELU activation  
-│   ├── dnn_with_high_dropout.h5      # Pre-trained DNN with higher dropout  
-│   ├── lstm_basic.h5                 # Pre-trained LSTM with self-attention  
-│   ├── lstm_deep.h5                  # Pre-trained LSTM with multiple layers  
-│   ├── lstm_wide.h5                  # Pre-trained LSTM with more hidden units  
-│   ├── lstm_bidirectional.h5         # Pre-trained bidirectional LSTM  
-│   ├── lstm_with_stats.h5            # Pre-trained LSTM with statistical features  
-│   ├── gru_basic.h5                  # Pre-trained GRU with self-attention  
-│   ├── gru_deep.h5                   # Pre-trained GRU with multiple layers  
-│   ├── gru_wide.h5                   # Pre-trained GRU with more hidden units  
-│   ├── gru_bidirectional.h5          # Pre-trained bidirectional GRU  
-│   ├── gru_with_stats.h5             # Pre-trained GRU with statistical features  
-│   ├── transformer_basic.h5          # Pre-trained Transformer (basic)  
-│   ├── transformer_more_heads.h5     # Pre-trained Transformer with more attention heads  
-│   ├── transformer_large_ff.h5       # Pre-trained Transformer with larger feed-forward dim  
-│   ├── transformer_low_dropout.h5    # Pre-trained Transformer with low dropout  
-│   ├── transformer_with_stats.h5     # Pre-trained Transformer with statistical features  
-│   └── scaler.save                   # Saved scaler for feature normalization  
-├── validation_dataset/                # Folder containing validation dataset pairs
-│   ├── ground_truth/                 # Original files with ground truth QoE values
-│   ├── inference/                    # Files with QoE values removed for validation
-│   └── validation_metadata.json      # Metadata tracking ground truth values
-├── validation_results/                # Folder containing validation outputs
-│   ├── plots/                        # Visualizations of validation results
-│   ├── validation_report.txt         # Comprehensive validation report
-│   ├── validation_summary.csv        # Summary metrics for all validated models
-│   └── model_detailed_results.csv    # Detailed file-by-file predictions
-└── inference_inputs/                 # Folder containing JSON files for inference (e.g., 20250204123000.json)
+- **Version 6 Enhancements:**
+  Support for separate train/validation/test directories, enhanced validation capabilities, and improved model evaluation pipelines.
 
 ## Installation
 
@@ -127,7 +80,7 @@ source venv/bin/activate
 3. **Install Dependencies:**
 ```bash
 pip install --upgrade pip
-pip install numpy pandas tensorflow joblib matplotlib scikit-learn keras_tuner
+pip install numpy pandas tensorflow joblib matplotlib scikit-learn keras_tuner tqdm seaborn
 ```
 
 ## Usage
@@ -156,6 +109,36 @@ python3 generate_mock_dataset.py --output_folder ./inference_inputs --mode infer
 python3 generate_mock_dataset.py --output_folder ./augmented_dataset --mode augmented --num_points 100 --start_timestamp 20250130114158
 ```
 
+### Generating Network Datasets
+
+The `network_dataset_generator.py` script creates realistic network datasets by reusing existing JSON files and organizing them into predictable patterns that simulate urban network behavior throughout the week.
+
+**Features:**
+- Categorizes existing files by QoE levels (A: Excellent, B: Good, C: Average, D: Fair, E: Poor)
+- Creates weekly patterns simulating network quality variations throughout different times of day
+- Generates datasets for any specified time period by intelligently cycling through available files
+- Maintains realistic transitions between network quality states
+
+**Usage:**
+```bash
+python3 network_dataset_generator.py --input-dir <source_folder> --output-dir <output_folder> --weeks <num_weeks> [--start-date YYYY-MM-DD]
+```
+
+**Example:**
+```bash
+# Generate 2 weeks of network data starting from today
+python3 network_dataset_generator.py --input-dir ./original_dataset --output-dir ./generated_dataset --weeks 2
+
+# Generate 4 weeks starting from a specific date
+python3 network_dataset_generator.py --input-dir ./original_dataset --output-dir ./generated_dataset --weeks 4 --start-date 2025-01-01
+```
+
+The generator creates patterns such as:
+- Excellent quality during night hours (low network usage)
+- Degraded quality during peak hours (5-9 PM)
+- Different patterns for weekdays vs weekends
+- Smooth transitions between quality categories
+
 ### Running Experiments
 
 Two experiment runners are provided:
@@ -180,6 +163,12 @@ To train a comprehensive set of model variants with different architectures and 
 ./train_all_models_v5.sh
 ```
 
+For version 6 models with separate train/validation/test directories:
+
+```bash
+python3 timeseries_forecasting_models_v6.py --train_dir ./final_complete_dataset/train_set --val_dir ./final_complete_dataset/validation_set --test_dir ./final_complete_dataset/test_set --model_type lstm --seq_length 5 --epochs 20 --batch_size 16 --output_dir ./forecasting_models_v6 --augmented --use_stats
+```
+
 This script trains 21 different model configurations:
 - 4 Linear Regressor variants (basic, L1 regularization, L2 regularization, ElasticNet)
 - 4 Simple DNN variants (basic, deep, with ELU activation, with high dropout)
@@ -187,7 +176,7 @@ This script trains 21 different model configurations:
 - 5 GRU variants (basic, deep, wide, bidirectional, with stats)
 - 5 Transformer variants (basic, more heads, large feed-forward, low dropout, with stats)
 
-All models are saved to the forecasting_models_v5 directory with appropriate naming conventions.
+All models are saved to the specified output directory with appropriate naming conventions.
 
 ### Testing All Models
 
@@ -197,12 +186,28 @@ To evaluate and compare all trained models, use the test_all_models.sh script:
 ./test_all_models.sh
 ```
 
+For version 6 models with enhanced capabilities:
+
+```bash
+./test_all_models_v6.sh --models-dir ./forecasting_models_v6 --test-dir ./final_complete_dataset/test_set --scaler-file ./forecasting_models_v6/scaler.save --seq-length 5 --use-stats --validate --validation-folder ./validation_dataset
+```
+
+Options for v6 testing:
+- `--models-dir`: Directory containing model files
+- `--test-dir`: Test dataset path
+- `--scaler-file`: Path to scaler file
+- `--seq-length`: Sequence length (default: 5)
+- `--use-stats`: Enable statistical features
+- `--validate`: Enable validation testing
+- `--validation-folder`: Validation dataset folder
+
 This script:
-1. Tests each model in the forecasting_models_v5 directory
+1. Tests each model in the specified directory
 2. Computes evaluation metrics (MSE, MAE, R² Score)
 3. Measures inference latency for each model
-4. Generates a comprehensive evaluation report (model_evaluation_report.txt)
-5. Creates a CSV file with all results (model_evaluation_results.csv)
+4. Generates a comprehensive evaluation report
+5. Creates a CSV file with all results
+6. Optionally runs validation experiments
 
 The report includes model rankings by each metric and identifies the best overall model based on a weighted combination of all metrics.
 
@@ -227,6 +232,11 @@ Evaluate your trained models using:
 python3 test_models.py --data_folder <folder_path> --model_file <model_file> --seq_length 5 --scaler_file forecasting_models_v5/scaler.save [--augmented] [--use_stats] [--simulate_device <device>]
 ```
 
+For version 6 models with enhanced testing:
+```bash
+python3 test_models_v6.py --data_folder ./final_complete_dataset/test_set --model_file ./forecasting_models_v6/gru_basic.h5 --seq_length 5 --scaler_file ./forecasting_models_v6/scaler.save --augmented --use_stats --verbose
+```
+
 **Example:**
 ```bash
 python3 test_models.py --data_folder ./augmented_dataset --model_file forecasting_models_v5/gru_with_stats.h5 --seq_length 5 --scaler_file forecasting_models_v5/scaler.save --augmented --use_stats --simulate_device jetson
@@ -242,11 +252,16 @@ The timeseries_forecasting_models_v5.py supports automated hyperparameter tuning
 python3 timeseries_forecasting_models_v5.py --data_folder ./augmented_dataset --model_type lstm --seq_length 5 --epochs 20 --batch_size 16 --augmented --use_stats --tune --max_trials 10 --tune_epochs 20
 ```
 
+For version 6 with separate directories:
+```bash
+python3 timeseries_forecasting_models_v6.py --train_dir ./final_complete_dataset/train_set --val_dir ./final_complete_dataset/validation_set --test_dir ./final_complete_dataset/test_set --model_type lstm --seq_length 5 --epochs 20 --batch_size 16 --augmented --use_stats --tune --max_trials 10 --tune_epochs 20
+```
+
 This allows you to find optimal hyperparameters for any model type (linear, dnn, lstm, gru, transformer).
 
 ## Models
 
-The latest version (v5) includes the following model types:
+The latest version (v5/v6) includes the following model types:
 
 1. **Linear Regressor Models**: 
    - Basic implementation flattens input sequences and applies a single Dense layer
@@ -270,7 +285,7 @@ The latest version (v5) includes the following model types:
 
 ## Distinction Between Timeseries Forecasting Model Versions
 
-There are four versions of the model definition scripts:
+There are six versions of the model definition scripts:
 
 - **timeseries_forecasting_models_v2.py:**
   - Implements LSTM, GRU, Transformer, and a Linear Regressor baseline.
@@ -299,6 +314,18 @@ There are four versions of the model definition scripts:
   - Uses log-cosh loss for most models (except linear regressors which use MSE).
   - Enhanced hyperparameter tuning with model-specific parameter spaces.
   - Full support for statistical features with the `--use_stats` flag.
+
+- **timeseries_forecasting_models_v6.py:**
+  - Enhanced version of v5 with support for separate train/validation/test directories.
+  - Designed for more rigorous model evaluation with dedicated validation sets.
+  - Maintains all model architectures from v5 (Linear, DNN, LSTM, GRU, Transformer).
+  - Configurable output directory for saving trained models and scalers.
+  - Uses validation data during training for better generalization.
+  - Key enhancements:
+    - `--train_dir`, `--val_dir`, `--test_dir` arguments for data separation
+    - `--output_dir` for customizable model save location
+    - Consistent scaler fitting across train/validation data
+    - Improved data loading for multi-directory workflows
   
 Choose the version that best suits your experimental needs or to compare performance differences.
 
@@ -311,7 +338,7 @@ The repository includes a validation system to perform controlled experiments on
 First, create a validation dataset with pairs of files (with/without QoE values) using:
 
 ```bash
-python3 prepare_validation_data.py --input_folder ./real_dataset --output_folder ./validation_dataset --sample_ratio 0.2 --random_seed 42"
+python3 prepare_validation_data.py --input_folder ./real_dataset --output_folder ./validation_dataset --sample_ratio 0.2 --random_seed 42
 ```
 
 Options:
@@ -326,12 +353,17 @@ Options:
 Run controlled validation experiments on one or more models:
 
 ```bash
-python3 validate_models.py --validation_folder ./validation_dataset --model_dir ./forecasting_models_v5 --scaler_file ./forecasting_models_v5/scaler.save --output_dir ./validation_results --seq_length 5 --use_stats"
+python3 validate_models.py --validation_folder ./validation_dataset --model_dir ./forecasting_models_v5 --scaler_file ./forecasting_models_v5/scaler.save --output_dir ./validation_results --seq_length 5 --use_stats
+```
+
+For version 6 models with enhanced validation:
+```bash
+python3 validate_models_v6.py --validation_folder ./validation_dataset --model_dir ./forecasting_models_v6 --scaler_file ./forecasting_models_v6/scaler.save --output_dir ./validation_results --seq_length 5 --use_stats --plots
 ```
 
 For a single model:
 ```bash
-python3 validate_models.py --validation_folder ./validation_dataset --model_file ./forecasting_models_v5/model_lstm.h5 --scaler_file ./forecasting_models_v5/scaler.save --output_dir ./validation_results_lstm"
+python3 validate_models.py --validation_folder ./validation_dataset --model_file ./forecasting_models_v5/model_lstm.h5 --scaler_file ./forecasting_models_v5/scaler.save --output_dir ./validation_results_lstm
 ```
 
 Options:
@@ -343,13 +375,19 @@ Options:
 - `--seq_length`: Sequence length used by the model(s)
 - `--use_stats`: Include if models were trained with statistical features
 - `--legacy_format`: Use if validation dataset is in legacy format
+- `--plots`: (v6 only) Generate publication-ready plots
 
 #### Integrated Testing and Validation
 
 Use the enhanced test_all_models.sh script to run both testing and validation:
 
 ```bash
-./test_all_models.sh --validate --prepare-validation --validation-sample 0.2"
+./test_all_models.sh --validate --prepare-validation --validation-sample 0.2
+```
+
+For version 6:
+```bash
+./test_all_models_v6.sh --models-dir ./forecasting_models_v6 --test-dir ./final_complete_dataset/test_set --validate --validation-folder ./validation_dataset --use-stats
 ```
 
 Options:
@@ -375,6 +413,7 @@ The validation process generates:
    - Error vs ground truth plots
    - Top files with largest errors
    - Comparative visualizations across models
+   - (v6) Publication-ready figures including KDE plots and comprehensive error bars
 
 3. **CSV files** for further analysis:
    - validation_summary.csv: Summary metrics for all models
