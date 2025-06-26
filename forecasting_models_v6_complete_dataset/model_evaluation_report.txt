@@ -1,0 +1,287 @@
+=======================================================
+        TIME SERIES FORECASTING MODELS EVALUATION      
+        Generated on Τετ 21 Μαΐ 2025 02:18:15 μμ EEST                           
+=======================================================
+
+Models Directory: /home/dimitris/Impact-xG_prediction_model/forecasting_models_v6_complete_dataset
+Test Dataset: ./final_complete_dataset/test_set
+Sequence Length: 5
+Dataset Format: New format (10-second windows with 2-second intervals)
+
+=======================================================
+
+Using statistical features (--use_stats) for all models based on scaler requirements
+
+Model: dnn_basic.h5
+Type: SimpleDNN
+MSE: 0.0156
+MAE: 0.0913
+R² Score: 0.7085
+Inference Latency: 61.37 ms
+
+-------------------------------------------------------
+
+Model: dnn_deep.h5
+Type: SimpleDNN
+MSE: 0.0153
+MAE: 0.0922
+R² Score: 0.7142
+Inference Latency: 57.26 ms
+
+-------------------------------------------------------
+
+Model: dnn_with_elu.h5
+Type: SimpleDNN
+MSE: 0.0077
+MAE: 0.0623
+R² Score: 0.8554
+Inference Latency: 57.49 ms
+
+-------------------------------------------------------
+
+Model: dnn_with_high_dropout.h5
+Type: SimpleDNN
+MSE: 0.0331
+MAE: 0.1350
+R² Score: 0.3810
+Inference Latency: 54.64 ms
+
+-------------------------------------------------------
+
+Model: gru_basic.h5
+Type: GRU
+MSE: 0.0022
+MAE: 0.0327
+R² Score: 0.9588
+Inference Latency: 67.53 ms
+
+-------------------------------------------------------
+
+Model: gru_deep.h5
+Type: GRU
+MSE: 0.0018
+MAE: 0.0293
+R² Score: 0.9657
+Inference Latency: 68.81 ms
+
+-------------------------------------------------------
+
+Model: gru_wide.h5
+Type: GRU
+MSE: 0.0020
+MAE: 0.0308
+R² Score: 0.9626
+Inference Latency: 68.40 ms
+
+-------------------------------------------------------
+
+Model: gru_with_stats.h5
+Type: GRU
+MSE: 0.0023
+MAE: 0.0337
+R² Score: 0.9574
+Inference Latency: 70.74 ms
+
+-------------------------------------------------------
+
+Model: linear_basic.h5
+Type: LinearRegressor
+MSE: 0.0291
+MAE: 0.1258
+R² Score: 0.4549
+Inference Latency: 57.61 ms
+
+-------------------------------------------------------
+
+Model: linear_with_elastic_net.h5
+Type: LinearRegressor
+MSE: 0.0329
+MAE: 0.1303
+R² Score: 0.3838
+Inference Latency: 57.32 ms
+
+-------------------------------------------------------
+
+Model: linear_with_l1_reg.h5
+Type: LinearRegressor
+MSE: 0.0346
+MAE: 0.1315
+R² Score: 0.3520
+Inference Latency: 57.59 ms
+
+-------------------------------------------------------
+
+Model: linear_with_l2_reg.h5
+Type: LinearRegressor
+MSE: 0.0309
+MAE: 0.1271
+R² Score: 0.4220
+Inference Latency: 57.68 ms
+
+-------------------------------------------------------
+
+Model: lstm_basic.h5
+Type: LSTM
+MSE: 0.0008
+MAE: 0.0187
+R² Score: 0.9852
+Inference Latency: 72.97 ms
+
+-------------------------------------------------------
+
+Model: lstm_deep.h5
+Type: LSTM
+MSE: 0.0007
+MAE: 0.0178
+R² Score: 0.9867
+Inference Latency: 72.45 ms
+
+-------------------------------------------------------
+
+Model: lstm_wide.h5
+Type: LSTM
+MSE: 0.0007
+MAE: 0.0175
+R² Score: 0.9860
+Inference Latency: 70.74 ms
+
+-------------------------------------------------------
+
+Model: lstm_with_stats.h5
+Type: LSTM
+MSE: 0.0007
+MAE: 0.0180
+R² Score: 0.9865
+Inference Latency: 71.16 ms
+
+-------------------------------------------------------
+
+Model: transformer_basic.h5
+Type: Transformer
+MSE: 0.0055
+MAE: 0.0570
+R² Score: 0.8975
+Inference Latency: 59.63 ms
+
+-------------------------------------------------------
+
+Model: transformer_large_ff.h5
+Type: Transformer
+MSE: 0.0048
+MAE: 0.0548
+R² Score: 0.9104
+Inference Latency: 60.33 ms
+
+-------------------------------------------------------
+
+Model: transformer_low_dropout.h5
+Type: Transformer
+MSE: 0.0051
+MAE: 0.0546
+R² Score: 0.9053
+Inference Latency: 60.28 ms
+
+-------------------------------------------------------
+
+Model: transformer_more_heads.h5
+Type: Transformer
+MSE: 0.0064
+MAE: 0.0646
+R² Score: 0.8810
+Inference Latency: 57.66 ms
+
+-------------------------------------------------------
+
+Model: transformer_with_stats.h5
+Type: Transformer
+MSE: 0.0039
+MAE: 0.0421
+R² Score: 0.9271
+Inference Latency: 56.77 ms
+
+-------------------------------------------------------
+
+
+
+SUMMARY REPORT
+=============
+
+Models by Type:
+- SimpleDNN: 4 models
+- GRU: 4 models
+- LinearRegressor: 4 models
+- LSTM: 4 models
+- Transformer: 5 models
+
+Model Rankings:
+
+Top 5 Models by MSE (lower is better):
+1. lstm_with_stats.h5 (LSTM) - MSE: 0.000700
+2. lstm_deep.h5 (LSTM) - MSE: 0.000700
+3. lstm_wide.h5 (LSTM) - MSE: 0.000700
+4. lstm_basic.h5 (LSTM) - MSE: 0.000800
+5. gru_deep.h5 (GRU) - MSE: 0.001800
+
+Top 5 Models by MAE (lower is better):
+1. lstm_wide.h5 (LSTM) - MAE: 0.017500
+2. lstm_deep.h5 (LSTM) - MAE: 0.017800
+3. lstm_with_stats.h5 (LSTM) - MAE: 0.018000
+4. lstm_basic.h5 (LSTM) - MAE: 0.018700
+5. gru_deep.h5 (GRU) - MAE: 0.029300
+
+Top 5 Models by R² Score (higher is better):
+1. lstm_deep.h5 (LSTM) - R²: 0.986700
+2. lstm_with_stats.h5 (LSTM) - R²: 0.986500
+3. lstm_wide.h5 (LSTM) - R²: 0.986000
+4. lstm_basic.h5 (LSTM) - R²: 0.985200
+5. gru_deep.h5 (GRU) - R²: 0.965700
+
+Top 5 Models by Inference Latency (lower is better):
+1. dnn_with_high_dropout.h5 (SimpleDNN) - Latency: 54.64 ms
+2. transformer_with_stats.h5 (Transformer) - Latency: 56.77 ms
+3. dnn_deep.h5 (SimpleDNN) - Latency: 57.26 ms
+4. linear_with_elastic_net.h5 (LinearRegressor) - Latency: 57.32 ms
+5. dnn_with_elu.h5 (SimpleDNN) - Latency: 57.49 ms
+
+Best Overall Models (ranked by composite score):
+(Composite score based on normalized: MSE, MAE, R2, Inference Latency (ms))
+1. lstm_wide.h5 (LSTM) - Score: 0.9118 (MSE: 0.000700, MAE: 0.017500, R²: 0.986000, Latency: 70.74 ms)
+2. lstm_with_stats.h5 (LSTM) - Score: 0.9085 (MSE: 0.000700, MAE: 0.018000, R²: 0.986500, Latency: 71.16 ms)
+3. lstm_deep.h5 (LSTM) - Score: 0.9021 (MSE: 0.000700, MAE: 0.017800, R²: 0.986700, Latency: 72.45 ms)
+4. lstm_basic.h5 (LSTM) - Score: 0.8953 (MSE: 0.000800, MAE: 0.018700, R²: 0.985200, Latency: 72.97 ms)
+5. gru_deep.h5 (GRU) - Score: 0.8729 (MSE: 0.001800, MAE: 0.029300, R²: 0.965700, Latency: 68.81 ms)
+
+Average Performance by Model Type:
+- GRU:
+  MSE: 0.002075
+  MAE: 0.031625
+  R2: 0.961125
+  Inference Latency: 68.87 ms
+- LSTM:
+  MSE: 0.000725
+  MAE: 0.018000
+  R2: 0.986100
+  Inference Latency: 71.83 ms
+- LinearRegressor:
+  MSE: 0.031875
+  MAE: 0.128675
+  R2: 0.403175
+  Inference Latency: 57.55 ms
+- SimpleDNN:
+  MSE: 0.017925
+  MAE: 0.095200
+  R2: 0.664775
+  Inference Latency: 57.69 ms
+- Transformer:
+  MSE: 0.005140
+  MAE: 0.054620
+  R2: 0.904260
+  Inference Latency: 58.93 ms
+
+=======================================================
+VALIDATION RESULTS
+=======================================================
+Detailed validation results are available at:
+/home/dimitris/Impact-xG_prediction_model/forecasting_models_v6_complete_dataset/validation_results
+
+Best performing model based on validation R2 score: lstm_wide.h5

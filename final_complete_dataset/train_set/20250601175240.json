@@ -1,0 +1,39 @@
+{
+    "QoE": 79.741554,
+    "timestamp": 20250601175240,
+    "20250601175232": {
+        "throughput": 1105.7,
+        "packets_lost": 2.0,
+        "packet_loss_rate": 0.9,
+        "jitter": 23.774,
+        "speed": 50
+    },
+    "20250601175234": {
+        "throughput": 967.6,
+        "packets_lost": 0.0,
+        "packet_loss_rate": 0.0,
+        "jitter": 22.386,
+        "speed": 50
+    },
+    "20250601175236": {
+        "throughput": 1191.6,
+        "packets_lost": 3.0,
+        "packet_loss_rate": 1.2,
+        "jitter": 21.182,
+        "speed": 50
+    },
+    "20250601175238": {
+        "throughput": 1438.0,
+        "packets_lost": 2.0,
+        "packet_loss_rate": 0.7,
+        "jitter": 20.34,
+        "speed": 50
+    },
+    "20250601175240": {
+        "throughput": 918.7,
+        "packets_lost": 1.0,
+        "packet_loss_rate": 0.5,
+        "jitter": 24.664,
+        "speed": 50
+    }
+}

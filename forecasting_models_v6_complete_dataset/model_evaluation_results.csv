@@ -1,0 +1,22 @@
+Model,Model Type,MSE,MAE,R2,Inference Latency (ms)
+dnn_basic.h5,SimpleDNN,0.0156,0.0913,0.7085,61.37
+dnn_deep.h5,SimpleDNN,0.0153,0.0922,0.7142,57.26
+dnn_with_elu.h5,SimpleDNN,0.0077,0.0623,0.8554,57.49
+dnn_with_high_dropout.h5,SimpleDNN,0.0331,0.1350,0.3810,54.64
+gru_basic.h5,GRU,0.0022,0.0327,0.9588,67.53
+gru_deep.h5,GRU,0.0018,0.0293,0.9657,68.81
+gru_wide.h5,GRU,0.0020,0.0308,0.9626,68.40
+gru_with_stats.h5,GRU,0.0023,0.0337,0.9574,70.74
+linear_basic.h5,LinearRegressor,0.0291,0.1258,0.4549,57.61
+linear_with_elastic_net.h5,LinearRegressor,0.0329,0.1303,0.3838,57.32
+linear_with_l1_reg.h5,LinearRegressor,0.0346,0.1315,0.3520,57.59
+linear_with_l2_reg.h5,LinearRegressor,0.0309,0.1271,0.4220,57.68
+lstm_basic.h5,LSTM,0.0008,0.0187,0.9852,72.97
+lstm_deep.h5,LSTM,0.0007,0.0178,0.9867,72.45
+lstm_wide.h5,LSTM,0.0007,0.0175,0.9860,70.74
+lstm_with_stats.h5,LSTM,0.0007,0.0180,0.9865,71.16
+transformer_basic.h5,Transformer,0.0055,0.0570,0.8975,59.63
+transformer_large_ff.h5,Transformer,0.0048,0.0548,0.9104,60.33
+transformer_low_dropout.h5,Transformer,0.0051,0.0546,0.9053,60.28
+transformer_more_heads.h5,Transformer,0.0064,0.0646,0.8810,57.66
+transformer_with_stats.h5,Transformer,0.0039,0.0421,0.9271,56.77

@@ -1,0 +1,39 @@
+{
+    "20250408185906": {
+        "throughput": 1054.4,
+        "packets_lost": 3.1,
+        "packet_loss_rate": 3.07,
+        "jitter": 31.17058511078056,
+        "speed": 17.0
+    },
+    "20250408185908": {
+        "throughput": 1199.7,
+        "packets_lost": 0.9,
+        "packet_loss_rate": 3.27,
+        "jitter": 21.213588835820726,
+        "speed": 32.0
+    },
+    "20250408185910": {
+        "throughput": 1198.5,
+        "packets_lost": 1.6,
+        "packet_loss_rate": 1.01,
+        "jitter": 28.017774385070908,
+        "speed": 34.0
+    },
+    "20250408185912": {
+        "throughput": 828.4,
+        "packets_lost": 0.5,
+        "packet_loss_rate": 0.5,
+        "jitter": 22.543764311558036,
+        "speed": 41.0
+    },
+    "20250408185914": {
+        "throughput": 752.7,
+        "packets_lost": 1.0,
+        "packet_loss_rate": 1.63,
+        "jitter": 25.693989819953924,
+        "speed": 56.0
+    },
+    "QoE": 80.32636640000001,
+    "timestamp": 20250408185914
+}

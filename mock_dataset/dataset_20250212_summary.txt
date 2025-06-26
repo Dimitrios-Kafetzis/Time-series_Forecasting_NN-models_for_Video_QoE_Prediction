@@ -1,0 +1,73 @@
+--- Dataset Generation Summary ---
+Total files generated: 100000
+Start timestamp: 20250212174704
+End timestamp: 20250224073334
+Time span: 11 days, 13:46:30
+Estimated duration (10-second intervals): 277.77 hours
+
+Feature Statistics:
+
+packet_loss_rate:
+  min: 0.0
+  max: 5.0
+  mean: 2.4975016
+  median: 2.49
+  std: 1.441305814876718
+  25th_percentile: 1.25
+  75th_percentile: 3.74
+  coefficient_of_variation: 0.5770990556629545
+
+jitter:
+  min: 20.0
+  max: 100.0
+  mean: 60.11927089999999
+  median: 60.2
+  std: 23.09143110782468
+  25th_percentile: 40.1475
+  75th_percentile: 80.18
+  coefficient_of_variation: 0.38409366517824295
+
+throughput:
+  min: 10.0
+  max: 100.0
+  mean: 55.0956932
+  median: 55.2
+  std: 25.99194055894007
+  25th_percentile: 32.61
+  75th_percentile: 77.66
+  coefficient_of_variation: 0.47175993347770545
+
+speed:
+  min: 20.0
+  max: 60.0
+  mean: 39.9841399
+  median: 40.01
+  std: 11.57444411936176
+  25th_percentile: 29.93
+  75th_percentile: 50.01
+  coefficient_of_variation: 0.2894758808945083
+
+QoE:
+  min: 0.41
+  max: 1.0
+  mean: 0.7927937999999999
+  median: 0.8
+  std: 0.12190728723730997
+  25th_percentile: 0.71
+  75th_percentile: 0.88
+  coefficient_of_variation: 0.15376922377207033
+
+Estimated Disk Usage of JSON Files:
+  14934121 bytes (14584.10 KB, 14.24 MB)
+
+Generation Settings Recap:
+  - One file per 10-second interval
+  - Total points: 100000
+  - Mode: Dataset (with QoE values)
+
+Diversity Indicators (Coefficient of Variation):
+  packet_loss_rate: 0.5771
+  jitter: 0.3841
+  throughput: 0.4718
+  speed: 0.2895
+  QoE: 0.1538

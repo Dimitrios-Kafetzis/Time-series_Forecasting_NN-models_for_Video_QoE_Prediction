@@ -60,7 +60,7 @@ def fix_json_files(directory_path):
 
 if __name__ == "__main__":
     # Set the directory path to your JSON files
-    directory_path = "./real_dataset_2"
+    directory_path = "./real_dataset_traces_3_only"
     
     # Confirm before proceeding
     print(f"This script will convert 'speed' fields from string to integer in all JSON files in {directory_path}")

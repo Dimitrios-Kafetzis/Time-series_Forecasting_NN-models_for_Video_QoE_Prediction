@@ -1,0 +1,916 @@
+=======================================================
+       TIME SERIES FORECASTING MODELS VALIDATION       
+       Generated on 2025-05-21 15:01:07       
+=======================================================
+
+VALIDATION DATASET INFORMATION
+-----------------------------
+Dataset format: new
+Sample ratio: 1.0
+Random seed: None
+Creation timestamp: 20250521141550
+Number of validation files: 25920
+
+VALIDATION PARAMETERS
+--------------------
+Sequence length: 5
+Statistical features: Enabled
+Original validation folder: ./validation_dataset
+
+MODEL VALIDATION RESULTS
+----------------------
+
+Model: transformer_basic.h5
+Type: Transformer
+
+Performance Metrics:
+  MSE: 13.055242
+  RMSE: 3.613204
+  MAE: 2.921568
+  Median Absolute Error: 2.488458
+  R² Score: 0.878032
+  Explained Variance: 0.908021
+  Mean Error (Bias): 1.791649
+  Max Absolute Error: 39.651303
+  Min Absolute Error: 0.003534
+
+Top 5 Files with Largest Errors:
+  1. File: 20250603000000.json
+     Ground Truth: 99.957520
+     Prediction: 60.306217
+     Error: -39.651303
+  2. File: 20250603000010.json
+     Ground Truth: 99.957520
+     Prediction: 69.998051
+     Error: -29.959469
+  3. File: 20250602170000.json
+     Ground Truth: 76.146565
+     Prediction: 99.567354
+     Error: 23.420789
+  4. File: 20250603190000.json
+     Ground Truth: 65.169930
+     Prediction: 88.349571
+     Error: 23.179641
+  5. File: 20250603060000.json
+     Ground Truth: 80.583408
+     Prediction: 102.359007
+     Error: 21.775599
+
+--------------------------------------------------
+
+Model: dnn_with_high_dropout.h5
+Type: Simple DNN
+
+Performance Metrics:
+  MSE: 66.617194
+  RMSE: 8.161936
+  MAE: 6.916167
+  Median Absolute Error: 7.352607
+  R² Score: 0.377631
+  Explained Variance: 0.452060
+  Mean Error (Bias): -2.822546
+  Max Absolute Error: 25.559836
+  Min Absolute Error: 0.006194
+
+Top 5 Files with Largest Errors:
+  1. File: 20250602190530.json
+     Ground Truth: 61.066940
+     Prediction: 86.626776
+     Error: 25.559836
+  2. File: 20250604201130.json
+     Ground Truth: 61.066940
+     Prediction: 86.626776
+     Error: 25.559836
+  3. File: 20250602193930.json
+     Ground Truth: 61.066940
+     Prediction: 86.626776
+     Error: 25.559836
+  4. File: 20250603202930.json
+     Ground Truth: 61.066940
+     Prediction: 86.626776
+     Error: 25.559836
+  5. File: 20250603195530.json
+     Ground Truth: 61.066940
+     Prediction: 86.626776
+     Error: 25.559836
+
+--------------------------------------------------
+
+Model: transformer_more_heads.h5
+Type: Transformer
+
+Performance Metrics:
+  MSE: 15.699356
+  RMSE: 3.962241
+  MAE: 3.356247
+  Median Absolute Error: 3.108809
+  R² Score: 0.853329
+  Explained Variance: 0.914708
+  Mean Error (Bias): 2.563177
+  Max Absolute Error: 40.084279
+  Min Absolute Error: 0.000095
+
+Top 5 Files with Largest Errors:
+  1. File: 20250603000000.json
+     Ground Truth: 99.957520
+     Prediction: 59.873241
+     Error: -40.084279
+  2. File: 20250603000010.json
+     Ground Truth: 99.957520
+     Prediction: 67.343440
+     Error: -32.614080
+  3. File: 20250602170000.json
+     Ground Truth: 76.146565
+     Prediction: 100.751580
+     Error: 24.605015
+  4. File: 20250604060000.json
+     Ground Truth: 83.398091
+     Prediction: 105.019813
+     Error: 21.621722
+  5. File: 20250603060000.json
+     Ground Truth: 80.583408
+     Prediction: 102.011159
+     Error: 21.427751
+
+--------------------------------------------------
+
+Model: gru_deep.h5
+Type: GRU
+
+Performance Metrics:
+  MSE: 3.154528
+  RMSE: 1.776099
+  MAE: 1.121065
+  Median Absolute Error: 0.685755
+  R² Score: 0.970529
+  Explained Variance: 0.970625
+  Mean Error (Bias): 0.101399
+  Max Absolute Error: 25.602505
+  Min Absolute Error: 0.000300
+
+Top 5 Files with Largest Errors:
+  1. File: 20250603000010.json
+     Ground Truth: 99.957520
+     Prediction: 74.355015
+     Error: -25.602505
+  2. File: 20250603000000.json
+     Ground Truth: 99.957520
+     Prediction: 75.510841
+     Error: -24.446679
+  3. File: 20250603170000.json
+     Ground Truth: 75.046658
+     Prediction: 96.361959
+     Error: 21.315301
+  4. File: 20250603170010.json
+     Ground Truth: 75.057299
+     Prediction: 96.354404
+     Error: 21.297105
+  5. File: 20250604210000.json
+     Ground Truth: 85.020057
+     Prediction: 64.295711
+     Error: -20.724346
+
+--------------------------------------------------
+
+Model: lstm_wide.h5
+Type: LSTM
+
+Performance Metrics:
+  MSE: 1.519667
+  RMSE: 1.232748
+  MAE: 0.724858
+  Median Absolute Error: 0.435016
+  R² Score: 0.985803
+  Explained Variance: 0.985822
+  Mean Error (Bias): -0.045279
+  Max Absolute Error: 21.105916
+  Min Absolute Error: 0.000321
+
+Top 5 Files with Largest Errors:
+  1. File: 20250603000000.json
+     Ground Truth: 99.957520
+     Prediction: 78.851604
+     Error: -21.105916
+  2. File: 20250603000010.json
+     Ground Truth: 99.957520
+     Prediction: 79.210592
+     Error: -20.746928
+  3. File: 20250603170000.json
+     Ground Truth: 75.046658
+     Prediction: 95.433420
+     Error: 20.386762
+  4. File: 20250603170010.json
+     Ground Truth: 75.057299
+     Prediction: 94.054014
+     Error: 18.996715
+  5. File: 20250603190010.json
+     Ground Truth: 65.231552
+     Prediction: 83.287940
+     Error: 18.056388
+
+--------------------------------------------------
+
+Model: dnn_basic.h5
+Type: Simple DNN
+
+Performance Metrics:
+  MSE: 26.760280
+  RMSE: 5.173034
+  MAE: 4.192824
+  Median Absolute Error: 3.975349
+  R² Score: 0.749993
+  Explained Variance: 0.758893
+  Mean Error (Bias): -0.976041
+  Max Absolute Error: 29.336930
+  Min Absolute Error: 0.000379
+
+Top 5 Files with Largest Errors:
+  1. File: 20250603202930.json
+     Ground Truth: 61.066940
+     Prediction: 90.403870
+     Error: 29.336930
+  2. File: 20250604193730.json
+     Ground Truth: 61.066940
+     Prediction: 90.403870
+     Error: 29.336930
+  3. File: 20250602193930.json
+     Ground Truth: 61.066940
+     Prediction: 90.403870
+     Error: 29.336930
+  4. File: 20250603192130.json
+     Ground Truth: 61.066940
+     Prediction: 90.403870
+     Error: 29.336930
+  5. File: 20250602201330.json
+     Ground Truth: 61.066940
+     Prediction: 90.403870
+     Error: 29.336930
+
+--------------------------------------------------
+
+Model: lstm_with_stats.h5
+Type: LSTM
+
+Performance Metrics:
+  MSE: 1.588381
+  RMSE: 1.260310
+  MAE: 0.778881
+  Median Absolute Error: 0.432040
+  R² Score: 0.985161
+  Explained Variance: 0.985482
+  Mean Error (Bias): 0.185386
+  Max Absolute Error: 21.407156
+  Min Absolute Error: 0.000074
+
+Top 5 Files with Largest Errors:
+  1. File: 20250603000010.json
+     Ground Truth: 99.957520
+     Prediction: 78.550364
+     Error: -21.407156
+  2. File: 20250603000000.json
+     Ground Truth: 99.957520
+     Prediction: 78.691521
+     Error: -21.265999
+  3. File: 20250603190010.json
+     Ground Truth: 65.231552
+     Prediction: 85.706335
+     Error: 20.474783
+  4. File: 20250603170000.json
+     Ground Truth: 75.046658
+     Prediction: 95.126394
+     Error: 20.079736
+  5. File: 20250603170010.json
+     Ground Truth: 75.057299
+     Prediction: 94.907223
+     Error: 19.849924
+
+--------------------------------------------------
+
+Model: linear_with_l2_reg.h5
+Type: Linear Regressor
+
+Performance Metrics:
+  MSE: 45.439036
+  RMSE: 6.740848
+  MAE: 5.077827
+  Median Absolute Error: 3.993183
+  R² Score: 0.575487
+  Explained Variance: 0.575954
+  Mean Error (Bias): 0.223547
+  Max Absolute Error: 29.362880
+  Min Absolute Error: 0.000157
+
+Top 5 Files with Largest Errors:
+  1. File: 20250604201130.json
+     Ground Truth: 61.066940
+     Prediction: 90.429820
+     Error: 29.362880
+  2. File: 20250602204730.json
+     Ground Truth: 61.066940
+     Prediction: 90.429820
+     Error: 29.362880
+  3. File: 20250603202930.json
+     Ground Truth: 61.066940
+     Prediction: 90.429820
+     Error: 29.362880
+  4. File: 20250602193930.json
+     Ground Truth: 61.066940
+     Prediction: 90.429820
+     Error: 29.362880
+  5. File: 20250604190330.json
+     Ground Truth: 61.066940
+     Prediction: 90.429820
+     Error: 29.362880
+
+--------------------------------------------------
+
+Model: linear_basic.h5
+Type: Linear Regressor
+
+Performance Metrics:
+  MSE: 42.539937
+  RMSE: 6.522265
+  MAE: 4.961428
+  Median Absolute Error: 3.876679
+  R² Score: 0.602572
+  Explained Variance: 0.603053
+  Mean Error (Bias): 0.226896
+  Max Absolute Error: 28.651866
+  Min Absolute Error: 0.005655
+
+Top 5 Files with Largest Errors:
+  1. File: 20250604190340.json
+     Ground Truth: 61.127292
+     Prediction: 89.779158
+     Error: 28.651866
+  2. File: 20250603192140.json
+     Ground Truth: 61.127292
+     Prediction: 89.779158
+     Error: 28.651866
+  3. File: 20250602201340.json
+     Ground Truth: 61.127292
+     Prediction: 89.779158
+     Error: 28.651866
+  4. File: 20250604204540.json
+     Ground Truth: 61.127292
+     Prediction: 89.779158
+     Error: 28.651866
+  5. File: 20250602193940.json
+     Ground Truth: 61.127292
+     Prediction: 89.779158
+     Error: 28.651866
+
+--------------------------------------------------
+
+Model: lstm_basic.h5
+Type: LSTM
+
+Performance Metrics:
+  MSE: 1.608544
+  RMSE: 1.268284
+  MAE: 0.760380
+  Median Absolute Error: 0.432421
+  R² Score: 0.984972
+  Explained Variance: 0.985058
+  Mean Error (Bias): 0.095649
+  Max Absolute Error: 23.454165
+  Min Absolute Error: 0.001089
+
+Top 5 Files with Largest Errors:
+  1. File: 20250603000010.json
+     Ground Truth: 99.957520
+     Prediction: 76.503355
+     Error: -23.454165
+  2. File: 20250603000000.json
+     Ground Truth: 99.957520
+     Prediction: 77.315618
+     Error: -22.641902
+  3. File: 20250603170000.json
+     Ground Truth: 75.046658
+     Prediction: 95.440918
+     Error: 20.394260
+  4. File: 20250603170010.json
+     Ground Truth: 75.057299
+     Prediction: 95.450722
+     Error: 20.393423
+  5. File: 20250603190010.json
+     Ground Truth: 65.231552
+     Prediction: 84.835648
+     Error: 19.604096
+
+--------------------------------------------------
+
+Model: transformer_low_dropout.h5
+Type: Transformer
+
+Performance Metrics:
+  MSE: 12.089345
+  RMSE: 3.476974
+  MAE: 2.761116
+  Median Absolute Error: 2.268292
+  R² Score: 0.887056
+  Explained Variance: 0.932583
+  Mean Error (Bias): 2.207532
+  Max Absolute Error: 36.090597
+  Min Absolute Error: 0.002424
+
+Top 5 Files with Largest Errors:
+  1. File: 20250603000000.json
+     Ground Truth: 99.957520
+     Prediction: 63.866923
+     Error: -36.090597
+  2. File: 20250602170000.json
+     Ground Truth: 76.146565
+     Prediction: 100.829388
+     Error: 24.682823
+  3. File: 20250604090030.json
+     Ground Truth: 99.944658
+     Prediction: 77.986522
+     Error: -21.958136
+  4. File: 20250604060000.json
+     Ground Truth: 83.398091
+     Prediction: 105.159165
+     Error: 21.761074
+  5. File: 20250602210000.json
+     Ground Truth: 89.565245
+     Prediction: 67.896238
+     Error: -21.669007
+
+--------------------------------------------------
+
+Model: linear_with_l1_reg.h5
+Type: Linear Regressor
+
+Performance Metrics:
+  MSE: 50.489939
+  RMSE: 7.105627
+  MAE: 5.325487
+  Median Absolute Error: 4.300016
+  R² Score: 0.528299
+  Explained Variance: 0.528300
+  Mean Error (Bias): 0.006238
+  Max Absolute Error: 29.664650
+  Min Absolute Error: 0.016920
+
+Top 5 Files with Largest Errors:
+  1. File: 20250603202920.json
+     Ground Truth: 61.044952
+     Prediction: 90.709602
+     Error: 29.664650
+  2. File: 20250604190320.json
+     Ground Truth: 61.044952
+     Prediction: 90.709602
+     Error: 29.664650
+  3. File: 20250603192120.json
+     Ground Truth: 61.044952
+     Prediction: 90.709602
+     Error: 29.664650
+  4. File: 20250603195520.json
+     Ground Truth: 61.044952
+     Prediction: 90.709602
+     Error: 29.664650
+  5. File: 20250602193920.json
+     Ground Truth: 61.044952
+     Prediction: 90.709602
+     Error: 29.664650
+
+--------------------------------------------------
+
+Model: lstm_deep.h5
+Type: LSTM
+
+Performance Metrics:
+  MSE: 1.526003
+  RMSE: 1.235315
+  MAE: 0.775217
+  Median Absolute Error: 0.471881
+  R² Score: 0.985743
+  Explained Variance: 0.985863
+  Mean Error (Bias): 0.112948
+  Max Absolute Error: 21.865584
+  Min Absolute Error: 0.000231
+
+Top 5 Files with Largest Errors:
+  1. File: 20250603000010.json
+     Ground Truth: 99.957520
+     Prediction: 78.091936
+     Error: -21.865584
+  2. File: 20250603190000.json
+     Ground Truth: 65.169930
+     Prediction: 85.680922
+     Error: 20.510992
+  3. File: 20250603170000.json
+     Ground Truth: 75.046658
+     Prediction: 95.149338
+     Error: 20.102680
+  4. File: 20250603000000.json
+     Ground Truth: 99.957520
+     Prediction: 80.012306
+     Error: -19.945214
+  5. File: 20250603170010.json
+     Ground Truth: 75.057299
+     Prediction: 94.908188
+     Error: 19.850889
+
+--------------------------------------------------
+
+Model: gru_with_stats.h5
+Type: GRU
+
+Performance Metrics:
+  MSE: 3.689629
+  RMSE: 1.920841
+  MAE: 1.241935
+  Median Absolute Error: 0.782420
+  R² Score: 0.965530
+  Explained Variance: 0.965855
+  Mean Error (Bias): 0.186508
+  Max Absolute Error: 31.178367
+  Min Absolute Error: 0.000184
+
+Top 5 Files with Largest Errors:
+  1. File: 20250603000010.json
+     Ground Truth: 99.957520
+     Prediction: 68.779153
+     Error: -31.178367
+  2. File: 20250603000000.json
+     Ground Truth: 99.957520
+     Prediction: 73.298654
+     Error: -26.658866
+  3. File: 20250603170000.json
+     Ground Truth: 75.046658
+     Prediction: 96.678019
+     Error: 21.631361
+  4. File: 20250604210000.json
+     Ground Truth: 85.020057
+     Prediction: 64.614061
+     Error: -20.405996
+  5. File: 20250603170010.json
+     Ground Truth: 75.057299
+     Prediction: 94.502874
+     Error: 19.445575
+
+--------------------------------------------------
+
+Model: transformer_large_ff.h5
+Type: Transformer
+
+Performance Metrics:
+  MSE: 11.495091
+  RMSE: 3.390441
+  MAE: 2.748480
+  Median Absolute Error: 2.274939
+  R² Score: 0.892607
+  Explained Variance: 0.928134
+  Mean Error (Bias): 1.950052
+  Max Absolute Error: 25.408774
+  Min Absolute Error: 0.001556
+
+Top 5 Files with Largest Errors:
+  1. File: 20250602170000.json
+     Ground Truth: 76.146565
+     Prediction: 101.555339
+     Error: 25.408774
+  2. File: 20250604060000.json
+     Ground Truth: 83.398091
+     Prediction: 104.718101
+     Error: 21.320010
+  3. File: 20250603190010.json
+     Ground Truth: 65.231552
+     Prediction: 86.156604
+     Error: 20.925052
+  4. File: 20250603170000.json
+     Ground Truth: 75.046658
+     Prediction: 95.039383
+     Error: 19.992725
+  5. File: 20250603000000.json
+     Ground Truth: 99.957520
+     Prediction: 81.115702
+     Error: -18.841818
+
+--------------------------------------------------
+
+Model: linear_with_elastic_net.h5
+Type: Linear Regressor
+
+Performance Metrics:
+  MSE: 48.779320
+  RMSE: 6.984219
+  MAE: 5.303381
+  Median Absolute Error: 3.998717
+  R² Score: 0.544281
+  Explained Variance: 0.544436
+  Mean Error (Bias): -0.128947
+  Max Absolute Error: 29.536442
+  Min Absolute Error: 0.010395
+
+Top 5 Files with Largest Errors:
+  1. File: 20250604193730.json
+     Ground Truth: 61.066940
+     Prediction: 90.603382
+     Error: 29.536442
+  2. File: 20250602193930.json
+     Ground Truth: 61.066940
+     Prediction: 90.603382
+     Error: 29.536442
+  3. File: 20250604204530.json
+     Ground Truth: 61.066940
+     Prediction: 90.603382
+     Error: 29.536442
+  4. File: 20250604190330.json
+     Ground Truth: 61.066940
+     Prediction: 90.603382
+     Error: 29.536442
+  5. File: 20250602190530.json
+     Ground Truth: 61.066940
+     Prediction: 90.603382
+     Error: 29.536442
+
+--------------------------------------------------
+
+Model: dnn_with_elu.h5
+Type: Simple DNN
+
+Performance Metrics:
+  MSE: 12.453843
+  RMSE: 3.529000
+  MAE: 2.487942
+  Median Absolute Error: 1.612282
+  R² Score: 0.883650
+  Explained Variance: 0.883666
+  Mean Error (Bias): 0.040447
+  Max Absolute Error: 26.381267
+  Min Absolute Error: 0.000442
+
+Top 5 Files with Largest Errors:
+  1. File: 20250603000000.json
+     Ground Truth: 99.957520
+     Prediction: 73.576253
+     Error: -26.381267
+  2. File: 20250602170000.json
+     Ground Truth: 76.146565
+     Prediction: 99.559327
+     Error: 23.412762
+  3. File: 20250603190010.json
+     Ground Truth: 65.231552
+     Prediction: 87.780718
+     Error: 22.549166
+  4. File: 20250603190000.json
+     Ground Truth: 65.169930
+     Prediction: 85.800683
+     Error: 20.630753
+  5. File: 20250604000000.json
+     Ground Truth: 93.964703
+     Prediction: 74.573539
+     Error: -19.391164
+
+--------------------------------------------------
+
+Model: transformer_with_stats.h5
+Type: Transformer
+
+Performance Metrics:
+  MSE: 12.197288
+  RMSE: 3.492462
+  MAE: 2.623016
+  Median Absolute Error: 1.771985
+  R² Score: 0.886047
+  Explained Variance: 0.920937
+  Mean Error (Bias): 1.932489
+  Max Absolute Error: 35.128779
+  Min Absolute Error: 0.002731
+
+Top 5 Files with Largest Errors:
+  1. File: 20250603000000.json
+     Ground Truth: 99.957520
+     Prediction: 64.828741
+     Error: -35.128779
+  2. File: 20250603000010.json
+     Ground Truth: 99.957520
+     Prediction: 71.769284
+     Error: -28.188236
+  3. File: 20250602170000.json
+     Ground Truth: 76.146565
+     Prediction: 102.726891
+     Error: 26.580326
+  4. File: 20250603060000.json
+     Ground Truth: 80.583408
+     Prediction: 103.205641
+     Error: 22.622233
+  5. File: 20250603190010.json
+     Ground Truth: 65.231552
+     Prediction: 87.164334
+     Error: 21.932782
+
+--------------------------------------------------
+
+Model: gru_basic.h5
+Type: GRU
+
+Performance Metrics:
+  MSE: 3.499627
+  RMSE: 1.870729
+  MAE: 1.204563
+  Median Absolute Error: 0.773118
+  R² Score: 0.967305
+  Explained Variance: 0.967364
+  Mean Error (Bias): 0.079549
+  Max Absolute Error: 26.994160
+  Min Absolute Error: 0.000874
+
+Top 5 Files with Largest Errors:
+  1. File: 20250603000000.json
+     Ground Truth: 99.957520
+     Prediction: 72.963360
+     Error: -26.994160
+  2. File: 20250603170000.json
+     Ground Truth: 75.046658
+     Prediction: 96.377710
+     Error: 21.331052
+  3. File: 20250604210000.json
+     Ground Truth: 85.020057
+     Prediction: 63.701823
+     Error: -21.318234
+  4. File: 20250603190010.json
+     Ground Truth: 65.231552
+     Prediction: 84.447353
+     Error: 19.215801
+  5. File: 20250603170010.json
+     Ground Truth: 75.057299
+     Prediction: 94.175390
+     Error: 19.118091
+
+--------------------------------------------------
+
+Model: gru_wide.h5
+Type: GRU
+
+Performance Metrics:
+  MSE: 3.421692
+  RMSE: 1.849782
+  MAE: 1.180731
+  Median Absolute Error: 0.684837
+  R² Score: 0.968033
+  Explained Variance: 0.968053
+  Mean Error (Bias): -0.045845
+  Max Absolute Error: 23.247694
+  Min Absolute Error: 0.000921
+
+Top 5 Files with Largest Errors:
+  1. File: 20250603000000.json
+     Ground Truth: 99.957520
+     Prediction: 76.709826
+     Error: -23.247694
+  2. File: 20250604210000.json
+     Ground Truth: 85.020057
+     Prediction: 64.352769
+     Error: -20.667288
+  3. File: 20250603170000.json
+     Ground Truth: 75.046658
+     Prediction: 94.117812
+     Error: 19.071154
+  4. File: 20250603190010.json
+     Ground Truth: 65.231552
+     Prediction: 84.177468
+     Error: 18.945916
+  5. File: 20250603170010.json
+     Ground Truth: 75.057299
+     Prediction: 93.771149
+     Error: 18.713850
+
+--------------------------------------------------
+
+Model: dnn_deep.h5
+Type: Simple DNN
+
+Performance Metrics:
+  MSE: 25.453018
+  RMSE: 5.045098
+  MAE: 4.108690
+  Median Absolute Error: 3.925448
+  R² Score: 0.762206
+  Explained Variance: 0.770393
+  Mean Error (Bias): -0.936114
+  Max Absolute Error: 30.257483
+  Min Absolute Error: 0.004662
+
+Top 5 Files with Largest Errors:
+  1. File: 20250602201330.json
+     Ground Truth: 61.066940
+     Prediction: 91.324423
+     Error: 30.257483
+  2. File: 20250604190330.json
+     Ground Truth: 61.066940
+     Prediction: 91.324423
+     Error: 30.257483
+  3. File: 20250603202930.json
+     Ground Truth: 61.066940
+     Prediction: 91.324423
+     Error: 30.257483
+  4. File: 20250603192130.json
+     Ground Truth: 61.066940
+     Prediction: 91.324423
+     Error: 30.257483
+  5. File: 20250604204530.json
+     Ground Truth: 61.066940
+     Prediction: 91.324423
+     Error: 30.257483
+
+--------------------------------------------------
+
+MODEL COMPARISON
+--------------
+Models ranked by R² Score (higher is better):
+1. lstm_wide.h5: 0.985803
+2. lstm_deep.h5: 0.985743
+3. lstm_with_stats.h5: 0.985161
+4. lstm_basic.h5: 0.984972
+5. gru_deep.h5: 0.970529
+6. gru_wide.h5: 0.968033
+7. gru_basic.h5: 0.967305
+8. gru_with_stats.h5: 0.965530
+9. transformer_large_ff.h5: 0.892607
+10. transformer_low_dropout.h5: 0.887056
+11. transformer_with_stats.h5: 0.886047
+12. dnn_with_elu.h5: 0.883650
+13. transformer_basic.h5: 0.878032
+14. transformer_more_heads.h5: 0.853329
+15. dnn_deep.h5: 0.762206
+16. dnn_basic.h5: 0.749993
+17. linear_basic.h5: 0.602572
+18. linear_with_l2_reg.h5: 0.575487
+19. linear_with_elastic_net.h5: 0.544281
+20. linear_with_l1_reg.h5: 0.528299
+21. dnn_with_high_dropout.h5: 0.377631
+
+Models ranked by RMSE (lower is better):
+1. lstm_wide.h5: 1.232748
+2. lstm_deep.h5: 1.235315
+3. lstm_with_stats.h5: 1.260310
+4. lstm_basic.h5: 1.268284
+5. gru_deep.h5: 1.776099
+6. gru_wide.h5: 1.849782
+7. gru_basic.h5: 1.870729
+8. gru_with_stats.h5: 1.920841
+9. transformer_large_ff.h5: 3.390441
+10. transformer_low_dropout.h5: 3.476974
+11. transformer_with_stats.h5: 3.492462
+12. dnn_with_elu.h5: 3.529000
+13. transformer_basic.h5: 3.613204
+14. transformer_more_heads.h5: 3.962241
+15. dnn_deep.h5: 5.045098
+16. dnn_basic.h5: 5.173034
+17. linear_basic.h5: 6.522265
+18. linear_with_l2_reg.h5: 6.740848
+19. linear_with_elastic_net.h5: 6.984219
+20. linear_with_l1_reg.h5: 7.105627
+21. dnn_with_high_dropout.h5: 8.161936
+
+Models ranked by MAE (lower is better):
+1. lstm_wide.h5: 0.724858
+2. lstm_basic.h5: 0.760380
+3. lstm_deep.h5: 0.775217
+4. lstm_with_stats.h5: 0.778881
+5. gru_deep.h5: 1.121065
+6. gru_wide.h5: 1.180731
+7. gru_basic.h5: 1.204563
+8. gru_with_stats.h5: 1.241935
+9. dnn_with_elu.h5: 2.487942
+10. transformer_with_stats.h5: 2.623016
+11. transformer_large_ff.h5: 2.748480
+12. transformer_low_dropout.h5: 2.761116
+13. transformer_basic.h5: 2.921568
+14. transformer_more_heads.h5: 3.356247
+15. dnn_deep.h5: 4.108690
+16. dnn_basic.h5: 4.192824
+17. linear_basic.h5: 4.961428
+18. linear_with_l2_reg.h5: 5.077827
+19. linear_with_elastic_net.h5: 5.303381
+20. linear_with_l1_reg.h5: 5.325487
+21. dnn_with_high_dropout.h5: 6.916167
+
+Models ranked by bias (absolute mean error, lower is better):
+1. linear_with_l1_reg.h5: 0.006238
+2. dnn_with_elu.h5: 0.040447
+3. lstm_wide.h5: 0.045279
+4. gru_wide.h5: 0.045845
+5. gru_basic.h5: 0.079549
+6. lstm_basic.h5: 0.095649
+7. gru_deep.h5: 0.101399
+8. lstm_deep.h5: 0.112948
+9. linear_with_elastic_net.h5: 0.128947
+10. lstm_with_stats.h5: 0.185386
+11. gru_with_stats.h5: 0.186508
+12. linear_with_l2_reg.h5: 0.223547
+13. linear_basic.h5: 0.226896
+14. dnn_deep.h5: 0.936114
+15. dnn_basic.h5: 0.976041
+16. transformer_basic.h5: 1.791649
+17. transformer_with_stats.h5: 1.932489
+18. transformer_large_ff.h5: 1.950052
+19. transformer_low_dropout.h5: 2.207532
+20. transformer_more_heads.h5: 2.563177
+21. dnn_with_high_dropout.h5: 2.822546
+
+=======================================================
+End of Validation Report

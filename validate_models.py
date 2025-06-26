@@ -92,6 +92,7 @@ def debug_print(message):
     timestamp = datetime.now().strftime("%H:%M:%S.%f")[:-3]
     print(f"[DEBUG {timestamp}] {message}")
 
+'''
 def load_validation_dataset(validation_folder):
     """Load the validation dataset and metadata."""
     debug_print(f"Looking for validation data in: {validation_folder}")
@@ -118,6 +119,44 @@ def load_validation_dataset(validation_folder):
         with open(metadata_path, 'r') as f:
             metadata = json.load(f)
         debug_print(f"Metadata loaded with {len(metadata.get('files', {}))} validation files")
+    except Exception as e:
+        debug_print(f"Error reading metadata file: {str(e)}")
+        traceback.print_exc()
+        sys.exit(1)
+    
+    return ground_truth_dir, inference_dir, metadata
+'''
+
+def load_validation_dataset(validation_folder):
+    """Load the validation dataset and metadata."""
+    debug_print(f"Looking for validation data in: {validation_folder}")
+    
+    ground_truth_dir = os.path.join(validation_folder, "ground_truth")
+    inference_dir = os.path.join(validation_folder, "inference")
+    metadata_path = os.path.join(validation_folder, "validation_metadata.json")
+    
+    # Check if directories exist
+    if not os.path.exists(ground_truth_dir):
+        debug_print(f"Error: ground_truth directory not found at {ground_truth_dir}")
+        sys.exit(1)
+        
+    if not os.path.exists(inference_dir):
+        debug_print(f"Error: inference directory not found at {inference_dir}")
+        sys.exit(1)
+        
+    if not os.path.exists(metadata_path):
+        debug_print(f"Error: validation_metadata.json not found at {metadata_path}")
+        sys.exit(1)
+    
+    # Load metadata
+    try:
+        with open(metadata_path, 'r') as f:
+            metadata = json.load(f)
+        debug_print(f"Metadata loaded with {len(metadata.get('files', {}))} validation files")
+        
+        # Check if this is a sequence-based validation dataset
+        if "sequences" in metadata:
+            debug_print(f"This is a sequence-based validation dataset with {len(metadata['sequences'])} sequences")
     except Exception as e:
         debug_print(f"Error reading metadata file: {str(e)}")
         traceback.print_exc()
@@ -196,6 +235,7 @@ def process_file_timestamps(filenames):
     # Sort by timestamp
     return [t[0] for t in sorted(timestamps, key=lambda x: x[1])]
 
+'''
 def generate_file_sequences(df, filenames, metadata, seq_length, feature_cols):
     """
     Generate sequences for each file, associate with ground truth, and keep track of file identity.
@@ -304,6 +344,7 @@ def generate_file_sequences(df, filenames, metadata, seq_length, feature_cols):
             traceback.print_exc()
     
     return np.array(X), np.array(ground_truth), file_mapping
+'''
 
 def load_models(model_args):
     """
@@ -704,6 +745,291 @@ def export_results_csv(all_results, output_dir):
     
     print(f"Results exported to CSV in {output_dir}")
 
+def generate_publication_plots(all_results, output_dir):
+    """
+    Generate publication-ready plots based on validation results.
+    Saves three figures:
+    1. Scatter plot for Basic GRU
+    2. KDE of absolute errors by model family
+    3. Bar chart of RMSE and MAE for all models
+    """
+    import matplotlib.pyplot as plt
+    import numpy as np
+    import pandas as pd
+    import os
+    from matplotlib.lines import Line2D
+    from scipy.stats import gaussian_kde
+
+    # Create figures directory if it doesn't exist
+    figures_dir = "./figures/"
+    if not os.path.exists(figures_dir):
+        os.makedirs(figures_dir)
+    
+    # 1. Scatter plot - Ground-truth vs prediction (Basic GRU)
+    basic_gru_results = None
+    for model_name, results in all_results.items():
+        if "gru_basic" in model_name.lower():
+            basic_gru_results = results
+            break
+    
+    if basic_gru_results is not None:
+        results_df = basic_gru_results["results_df"]
+        
+        plt.figure(figsize=(8, 6))
+        plt.scatter(results_df['Ground Truth'], results_df['Prediction'], alpha=0.7)
+        
+        # Add reference line
+        min_val = min(results_df['Ground Truth'].min(), results_df['Prediction'].min())
+        max_val = max(results_df['Ground Truth'].max(), results_df['Prediction'].max())
+        plt.plot([min_val, max_val], [min_val, max_val], 'k--')
+        
+        plt.title("Basic GRU – Predicted vs True QoE")
+        plt.xlabel("Ground Truth QoE")
+        plt.ylabel("Predicted QoE")
+        plt.grid(alpha=0.3)
+        plt.tight_layout()
+        plt.savefig(os.path.join(figures_dir, "scatter_basic_gru.png"), dpi=300)
+        plt.close()
+    
+    # 2. Kernel-density estimates of absolute error - four model families
+    # Group models by family
+    family_data = {
+        "Linear/DNN": [],
+        "LSTM": [],
+        "GRU": [],
+        "Transformer": []
+    }
+    
+    for model_name, results in all_results.items():
+        model_type = results.get("model_type", "Unknown")
+        results_df = results["results_df"]
+        abs_error = np.abs(results_df["Error"])
+        
+        if "Linear" in model_type or "DNN" in model_type:
+            family_data["Linear/DNN"].extend(abs_error)
+        elif "LSTM" in model_type:
+            family_data["LSTM"].extend(abs_error)
+        elif "GRU" in model_type:
+            family_data["GRU"].extend(abs_error)
+        elif "Transformer" in model_type:
+            family_data["Transformer"].extend(abs_error)
+    
+    # Plot KDE for each family
+    plt.figure(figsize=(10, 6))
+    
+    for family, errors in family_data.items():
+        if errors:  # Only plot if we have data for this family
+            # Compute KDE using numpy
+            errors = np.array(errors)
+            kde_x = np.linspace(0, max(errors) * 1.1, 1000)
+            kde = gaussian_kde(errors)
+            kde_y = kde(kde_x)
+            
+            plt.plot(kde_x, kde_y, label=family, linewidth=2)
+    
+    plt.title("Distribution of Absolute Prediction Error by Model Family")
+    plt.xlabel("Absolute Error (VMAF units)")
+    plt.ylabel("Density")
+    plt.legend()
+    plt.grid(alpha=0.3)
+    plt.tight_layout()
+    plt.savefig(os.path.join(figures_dir, "kde_abs_error_families.png"), dpi=300)
+    plt.close()
+    
+    # 3. Bar chart - RMSE and MAE for every trained variant
+    model_metrics = []
+    for model_name, results in all_results.items():
+        metrics = results["metrics"]
+        model_metrics.append({
+            "Model": model_name,
+            "RMSE": metrics["rmse"],
+            "MAE": metrics["mae"]
+        })
+    
+    # Convert to DataFrame and sort by RMSE
+    metrics_df = pd.DataFrame(model_metrics)
+    metrics_df = metrics_df.sort_values(by="RMSE")
+    
+    # Create the bar chart
+    plt.figure(figsize=(14, 8))
+    
+    # Set up positions for the bars
+    models = metrics_df["Model"]
+    x = np.arange(len(models))
+    width = 0.35
+    
+    # Plot bars
+    plt.bar(x - width/2, metrics_df["RMSE"], width, label="RMSE")
+    plt.bar(x + width/2, metrics_df["MAE"], width, label="MAE")
+    
+    # Customize the plot
+    plt.title("Error Metrics Across All Model Variants")
+    plt.xlabel("Model")
+    plt.ylabel("Error Value")
+    plt.xticks(x, models, rotation=45, ha="right")
+    plt.legend()
+    plt.grid(axis="y", alpha=0.3)
+    plt.tight_layout()
+    plt.savefig(os.path.join(figures_dir, "error_bars_all_models.png"), dpi=300)
+    plt.close()
+    
+    print(f"Publication-ready plots saved to {figures_dir}")
+
+def generate_file_sequences(df, filenames, metadata, seq_length, feature_cols):
+    """
+    Generate sequences for each file, associate with ground truth, and keep track of file identity.
+    
+    This enhanced version specifically handles validation datasets created with the sequence-based
+    option in prepare_validation_data.py.
+    """
+    debug_print(f"Generating sequences for {len(filenames)} files with seq_length={seq_length}")
+    X = []
+    ground_truth = []
+    file_mapping = []
+    
+    # Check if we have sequence information in metadata
+    if "sequences" in metadata:
+        debug_print(f"Found {len(metadata['sequences'])} predefined sequences in metadata")
+        
+        # Process each predefined sequence
+        for seq_info in metadata["sequences"]:
+            seq_files = seq_info.get("files", [])
+            
+            # Skip if sequence doesn't have enough files
+            if len(seq_files) < seq_length:
+                debug_print(f"Skipping sequence: insufficient files ({len(seq_files)})")
+                continue
+                
+            # Get ground truth QoE from the last file in the sequence
+            last_file = seq_files[-1]
+            if last_file not in metadata["files"]:
+                debug_print(f"Skipping sequence: last file {last_file} not in metadata")
+                continue
+                
+            gt_qoe = metadata["files"][last_file]["ground_truth_qoe"]
+            
+            # Create a sequence of feature data from the files
+            seq_data = []
+            valid_sequence = True
+            
+            for file in seq_files:
+                # Extract timestamp from filename
+                try:
+                    file_ts = file.split('.')[0]
+                    
+                    # Find rows in the dataframe that match this file's timestamp
+                    matching_rows = df[df['timestamp_norm'] == file_ts]
+                    
+                    if matching_rows.empty:
+                        debug_print(f"Could not find data for file {file}")
+                        valid_sequence = False
+                        break
+                    
+                    # Get feature data for this file
+                    file_data = matching_rows[feature_cols].values[0]
+                    seq_data.append(file_data)
+                except Exception as e:
+                    debug_print(f"Error processing file {file} in sequence: {str(e)}")
+                    valid_sequence = False
+                    break
+            
+            # Add the sequence if valid
+            if valid_sequence and len(seq_data) == seq_length:
+                X.append(np.array(seq_data))
+                ground_truth.append(gt_qoe)
+                file_mapping.append(last_file)  # Use the last file as the identifier
+                debug_print(f"Added sequence ending with {last_file}")
+            
+        debug_print(f"Created {len(X)} sequences from predefined sequences in metadata")
+    
+    # If no sequences were created from metadata, or if there's no sequence info in metadata,
+    # fall back to the original timestamp-based approach
+    if len(X) == 0:
+        debug_print("No sequences from metadata, falling back to timestamp-based sequence generation")
+        
+        # Process filenames to ensure they're sorted by timestamp
+        sorted_filenames = process_file_timestamps(filenames)
+        
+        # Create sequences based on chronological file ordering
+        for i in range(len(sorted_filenames) - seq_length + 1):
+            sequence = sorted_filenames[i:i+seq_length]
+            
+            # Get ground truth from the last file in the sequence
+            last_file = sequence[-1]
+            if last_file not in metadata["files"]:
+                continue
+                
+            gt_qoe = metadata["files"][last_file]["ground_truth_qoe"]
+            
+            # Build the feature data for this sequence
+            seq_data = []
+            valid_sequence = True
+            
+            for file in sequence:
+                try:
+                    # Extract timestamp from filename
+                    file_ts = file.split('.')[0]
+                    
+                    # Find matching rows in the dataframe
+                    matching_rows = df[df['timestamp_norm'] == file_ts]
+                    
+                    if matching_rows.empty:
+                        valid_sequence = False
+                        break
+                    
+                    # Get feature data
+                    file_data = matching_rows[feature_cols].values[0]
+                    seq_data.append(file_data)
+                except Exception as e:
+                    valid_sequence = False
+                    break
+            
+            # Add the sequence if valid
+            if valid_sequence and len(seq_data) == seq_length:
+                X.append(np.array(seq_data))
+                ground_truth.append(gt_qoe)
+                file_mapping.append(last_file)
+                
+        debug_print(f"Created {len(X)} sequences using timestamp-based approach")
+    
+    # If we still have no sequences, try a more aggressive approach
+    if len(X) == 0:
+        debug_print("WARNING: No sequences generated. Trying direct sliding window approach...")
+        
+        # Find all unique timestamps in the dataframe
+        timestamps = sorted(df['timestamp_norm'].unique())
+        
+        # Create sequences using sliding windows of timestamps
+        for i in range(len(timestamps) - seq_length + 1):
+            seq_timestamps = timestamps[i:i+seq_length]
+            
+            # Get feature data for each timestamp
+            seq_data = []
+            for ts in seq_timestamps:
+                rows = df[df['timestamp_norm'] == ts]
+                if not rows.empty:
+                    seq_data.append(rows[feature_cols].values[0])
+            
+            # Skip if we don't have enough data
+            if len(seq_data) != seq_length:
+                continue
+                
+            # Find a filename that matches the last timestamp
+            last_ts = seq_timestamps[-1]
+            matching_files = [f for f in filenames if f.startswith(last_ts)]
+            
+            if matching_files and matching_files[0] in metadata["files"]:
+                last_file = matching_files[0]
+                gt_qoe = metadata["files"][last_file]["ground_truth_qoe"]
+                
+                X.append(np.array(seq_data))
+                ground_truth.append(gt_qoe)
+                file_mapping.append(last_file)
+        
+        debug_print(f"Created {len(X)} sequences using sliding timestamp windows")
+    
+    return np.array(X), np.array(ground_truth), file_mapping
+
 def main():
     debug_print("Starting validate_models.py script")
     
@@ -734,6 +1060,10 @@ def main():
                         help='Include extra statistical features (must match model training configuration).')
     parser.add_argument('--legacy_format', action='store_true',
                         help='Use legacy format for validation data.')
+    
+    #Ready to publication plots
+    parser.add_argument('--plots', action='store_true',
+                   help='Generate publication-ready plots.')
     
     debug_print("Parsing arguments...")
     args = parser.parse_args()
@@ -927,6 +1257,15 @@ def main():
         traceback.print_exc()
     
     debug_print("\nValidation complete! Results saved to: " + args.output_dir)
+
+    if args.plots:
+        debug_print("Generating publication-ready plots...")
+        try:
+            generate_publication_plots(all_results, args.output_dir)
+            debug_print("Publication plots generated successfully")
+        except Exception as e:
+            debug_print(f"Error generating publication plots: {str(e)}")
+            traceback.print_exc()
 
 if __name__ == "__main__":
     try:

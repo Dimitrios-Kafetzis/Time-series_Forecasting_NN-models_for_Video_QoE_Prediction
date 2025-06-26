@@ -1,0 +1,56 @@
+2025-04-03 16:30:53.265631: I tensorflow/core/platform/cpu_feature_guard.cc:193] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 FMA
+To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2025-04-03 16:30:53.444239: E tensorflow/stream_executor/cuda/cuda_blas.cc:2981] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+2025-04-03 16:30:54.175986: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'libnvinfer.so.7'; dlerror: libnvinfer.so.7: cannot open shared object file: No such file or directory; LD_LIBRARY_PATH: /usr/local/cuda-11.2/lib64:/usr/lib/cuda/include:/usr/lib/cuda/lib64:/usr/local/cuda-11.2/lib64:/usr/lib/cuda/include:/usr/lib/cuda/lib64:
+2025-04-03 16:30:54.176098: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'libnvinfer_plugin.so.7'; dlerror: libnvinfer_plugin.so.7: cannot open shared object file: No such file or directory; LD_LIBRARY_PATH: /usr/local/cuda-11.2/lib64:/usr/lib/cuda/include:/usr/lib/cuda/lib64:/usr/local/cuda-11.2/lib64:/usr/lib/cuda/include:/usr/lib/cuda/lib64:
+2025-04-03 16:30:54.176113: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Cannot dlopen some TensorRT libraries. If you would like to use Nvidia GPU with TensorRT, please make sure the missing libraries mentioned above are installed properly.
+2025-04-03 16:30:56.339960: I tensorflow/core/platform/cpu_feature_guard.cc:193] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 FMA
+To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2025-04-03 16:30:57.016337: W tensorflow/core/common_runtime/gpu/gpu_bfc_allocator.cc:42] Overriding orig_value setting because the TF_FORCE_GPU_ALLOW_GROWTH environment variable is set. Original config value was 0.
+2025-04-03 16:30:57.016397: I tensorflow/core/common_runtime/gpu/gpu_process_state.cc:222] Using CUDA malloc Async allocator for GPU: 0
+2025-04-03 16:30:57.016590: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1616] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 4945 MB memory:  -> device: 0, name: NVIDIA GeForce RTX 2060 SUPER, pci bus id: 0000:01:00.0, compute capability: 7.5
+Starting test with debugging...
+Data folder: /home/dimitris/Impact-xG_prediction_model/real_dataset
+Model file: /home/dimitris/Impact-xG_prediction_model/forecasting_models_v5/linear_basic.h5
+Scaler file: /home/dimitris/Impact-xG_prediction_model/forecasting_models_v5/scaler.save
+Output directory: /home/dimitris/Impact-xG_prediction_model/forecasting_models_v5
+Importing libraries...
+Loading dataset...
+Dataset loaded, shape: (329, 47)
+Number of features: 45
+Preprocessing dataframe...
+Loading scaler...
+Applying scaling to 46 columns...
+Creating sequences...
+Created sequences, X shape: (324, 5, 45), y shape: (324,)
+Test set size: 64
+Loading model...
+Model loaded successfully
+Evaluating model...
+1/2 [==============>...............] - ETA: 0s - loss: 0.11392/2 [==============================] - 1s 3ms/step - loss: 0.1496
+Test loss: 0.14964893460273743
+Making predictions...
+1/2 [==============>...............] - ETA: 0s2/2 [==============================] - 0s 1ms/step
+Calculating metrics...
+
+Evaluation Metrics:
+Mean Squared Error (MSE): 0.1496
+Mean Absolute Error (MAE): 0.3215
+R^2 Score: -0.6379
+Extracting feature importance...
+
+Top 10 Features by Importance:
+f6_t-3: 0.1795
+packet_loss_rate_max_t-2: 0.1693
+jitter_mean_t-5: 0.1665
+f24_t-2: -0.1645
+f23_t-3: 0.1603
+throughput_mean_t-5: 0.1592
+packets_lost_max_t-5: -0.1548
+f19_t-1: -0.1546
+jitter_min_t-2: 0.1520
+speed_mean_t-2: 0.1506
+Bias term: 0.0263
+Saving feature importance to file...
+Feature importance saved to: /home/dimitris/Impact-xG_prediction_model/forecasting_models_v5/feature_importance/linear_basic.h5.importance.json
+Test completed successfully!

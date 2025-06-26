@@ -1,0 +1,54 @@
+=================================================
+          TIME GAP ANALYSIS REPORT               
+=================================================
+
+Report generated on: 2025-05-16 16:09:10
+
+1. TIME GAP OVERVIEW
+===================
+
+Total samples in dataset: 2536
+Total gaps analyzed: 2535
+
+Gap duration statistics:
+  - Mean gap: 1301.70 seconds
+  - Median gap: 17.00 seconds
+  - Standard deviation: 53759.90 seconds
+  - Minimum gap: 16.00 seconds
+  - Maximum gap: 2656575.00 seconds
+
+2. LARGE GAP ANALYSIS
+=====================
+
+Large gap threshold: 60.00 seconds
+Number of large gaps: 4 (0.16% of all gaps)
+
+Top 10 largest gaps (in seconds):
+  1. 2025-04-08 16:03:56 to 2025-05-09 10:00:11: 2656575.00 seconds (44276.25 minutes)
+  2. 2025-04-02 13:50:38 to 2025-04-08 12:34:52: 513854.00 seconds (8564.23 minutes)
+  3. 2025-05-09 14:34:28 to 2025-05-10 12:46:44: 79936.00 seconds (1332.27 minutes)
+  4. 2025-04-08 13:35:13 to 2025-04-08 15:33:54: 7121.00 seconds (118.68 minutes)
+
+3. IMPACT ON SEQUENCE GENERATION
+===============================
+
+Sequence length analyzed: 5
+Number of potential sequences: 2532
+Number of problematic sequences containing large gaps: 16
+Percentage of problematic sequences: 0.63%
+
+4. RISK ASSESSMENT
+=================
+
+Overall Risk Level: LOW
+Time gaps are unlikely to significantly impact model training or inference.
+
+5. RECOMMENDATIONS
+=================
+
+- No specific action needed for time gaps.
+
+
+=================================================
+                END OF REPORT                   
+=================================================

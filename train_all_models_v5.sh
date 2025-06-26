@@ -5,12 +5,12 @@
 # UPDATED: All models now use the new dataset format by default and the --use_stats flag for feature consistency
 
 # Define the output directory for models
-OUTPUT_DIR=~/Impact-xG_prediction_model/forecasting_models_v5
+OUTPUT_DIR=~/Impact-xG_prediction_model/forecasting_models_v5_complete_dataset
 # Create the output directory if it doesn't exist
 mkdir -p "$OUTPUT_DIR"
 
 # Define the path to your augmented dataset
-AUGMENTED_DATASET="./real_dataset"  # Change this to your actual dataset path
+AUGMENTED_DATASET="./final_complete_dataset/train_set"  # Change this to your actual dataset path
 
 # Define common parameters
 SEQ_LENGTH=5
@@ -44,6 +44,7 @@ train_model() {
                 --seq_length $SEQ_LENGTH \
                 --epochs $EPOCHS \
                 --batch_size $BATCH_SIZE \
+                --tune \
                 --augmented \
                 --use_stats \
                 $extra_args"

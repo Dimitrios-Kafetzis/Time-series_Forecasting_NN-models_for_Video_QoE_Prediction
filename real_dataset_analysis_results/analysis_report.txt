@@ -1,0 +1,204 @@
+=================================================
+    NETWORK METRICS DATASET ANALYSIS REPORT      
+=================================================
+
+Report generated on: 2025-05-13 21:07:54
+
+1. DATASET OVERVIEW
+===================
+
+Total number of data points: 12680
+Number of unique timestamps: 12680
+Time range: 20250402121946 to 20250510165640
+
+2. BASIC STATISTICS
+===================
+
+                    count         mean         std         min          5%          25%          50%          75%         95%          max  skewness  kurtosis
+QoE               12680.0    82.319255   20.806400    0.032238   39.313196    72.129844    91.403722    97.758629    99.95752    99.987915 -1.440557  1.549524
+throughput        12680.0  1179.380812  225.314195  482.300000  685.600000  1087.400000  1154.500000  1344.000000  1466.60000  2070.900000  0.080982  2.341027
+packets_lost      12680.0     0.750158    1.079843    0.000000    0.000000     0.000000     0.000000     1.000000     3.00000    14.000000  1.980095  6.239618
+packet_loss_rate  12680.0     0.318604    0.465068    0.000000    0.000000     0.000000     0.000000     0.400000     1.30000     4.600000  1.919480  4.985592
+jitter            12680.0    20.594485    2.183877   10.906000   16.692000    19.868000    20.817000    21.707000    23.74800    27.628000 -1.304847  3.641099
+speed             12680.0    23.414826   20.562977    0.000000    0.000000     0.000000    20.000000    50.000000    50.00000    50.000000  0.232645 -1.504992
+
+3. DISTRIBUTION ANALYSIS
+=======================
+
+3.1. QOE
+---------
+
+Mean: 82.3193
+Median: 91.4037
+Standard Deviation: 20.8064
+Skewness: -1.4406 (negatively skewed)
+Kurtosis: 1.5495 (leptokurtic - more peaked than normal distribution)
+Range: 0.0322 to 99.9879
+IQR (Interquartile Range): 25.6288
+
+Normality Test p-value: 0.000000
+The distribution is significantly different from a normal distribution.
+
+Range Coverage: 100.00% of possible value ranges have data
+Empty Ranges: 0 out of 30 bins have no data
+
+No significant gaps identified in the data coverage.
+
+3.2. THROUGHPUT
+----------------
+
+Mean: 1179.3808
+Median: 1154.5000
+Standard Deviation: 225.3142
+Skewness: 0.0810 (approximately symmetric)
+Kurtosis: 2.3410 (leptokurtic - more peaked than normal distribution)
+Range: 482.3000 to 2070.9000
+IQR (Interquartile Range): 256.6000
+
+Normality Test p-value: 0.000000
+The distribution is significantly different from a normal distribution.
+
+Range Coverage: 80.00% of possible value ranges have data
+Empty Ranges: 6 out of 30 bins have no data
+
+Identified gaps in data coverage:
+  Gap 1: 747.0667 to 852.9733
+  Gap 2: 1594.3200 to 1647.2733
+  Gap 3: 1859.0867 to 2017.9467
+
+3.3. PACKETS_LOST
+------------------
+
+Mean: 0.7502
+Median: 0.0000
+Standard Deviation: 1.0798
+Skewness: 1.9801 (positively skewed)
+Kurtosis: 6.2396 (leptokurtic - more peaked than normal distribution)
+Range: 0.0000 to 14.0000
+IQR (Interquartile Range): 1.0000
+
+Normality Test p-value: 0.000000
+The distribution is significantly different from a normal distribution.
+
+Range Coverage: 36.67% of possible value ranges have data
+Empty Ranges: 19 out of 30 bins have no data
+
+Identified gaps in data coverage:
+  Gap 1: 0.4667 to 0.9333
+  Gap 2: 1.4000 to 1.8667
+  Gap 3: 2.3333 to 2.8000
+  Gap 4: 3.2667 to 3.7333
+  Gap 5: 4.2000 to 4.6667
+  Gap 6: 5.1333 to 5.6000
+  Gap 7: 6.0667 to 7.0000
+  Gap 8: 7.4667 to 7.9333
+  Gap 9: 8.4000 to 8.8667
+  Gap 10: 9.3333 to 13.5333
+
+3.4. PACKET_LOSS_RATE
+----------------------
+
+Mean: 0.3186
+Median: 0.0000
+Standard Deviation: 0.4651
+Skewness: 1.9195 (positively skewed)
+Kurtosis: 4.9856 (leptokurtic - more peaked than normal distribution)
+Range: 0.0000 to 4.6000
+IQR (Interquartile Range): 0.4000
+
+Normality Test p-value: 0.000000
+The distribution is significantly different from a normal distribution.
+
+Range Coverage: 86.67% of possible value ranges have data
+Empty Ranges: 4 out of 30 bins have no data
+
+Identified gaps in data coverage:
+  Gap 1: 3.6800 to 3.9867
+  Gap 2: 4.1400 to 4.4467
+
+3.5. JITTER
+------------
+
+Mean: 20.5945
+Median: 20.8170
+Standard Deviation: 2.1839
+Skewness: -1.3048 (negatively skewed)
+Kurtosis: 3.6411 (leptokurtic - more peaked than normal distribution)
+Range: 10.9060 to 27.6280
+IQR (Interquartile Range): 1.8390
+
+Normality Test p-value: 0.000000
+The distribution is significantly different from a normal distribution.
+
+Range Coverage: 93.33% of possible value ranges have data
+Empty Ranges: 2 out of 30 bins have no data
+
+Identified gaps in data coverage:
+  Gap 1: 11.4634 to 12.0208
+  Gap 2: 13.6930 to 14.2504
+
+3.6. SPEED
+-----------
+
+Mean: 23.4148
+Median: 20.0000
+Standard Deviation: 20.5630
+Skewness: 0.2326 (approximately symmetric)
+Kurtosis: -1.5050 (platykurtic - flatter than normal distribution)
+Range: 0.0000 to 50.0000
+IQR (Interquartile Range): 50.0000
+
+Normality Test p-value: 0.000000
+The distribution is significantly different from a normal distribution.
+
+Range Coverage: 100.00% of possible value ranges have data
+Empty Ranges: 0 out of 3 bins have no data
+
+No significant gaps identified in the data coverage.
+
+4. CORRELATION ANALYSIS
+======================
+
+Correlation Matrix:
+                       QoE  throughput  packets_lost  packet_loss_rate    jitter     speed
+QoE               1.000000   -0.045191     -0.378711         -0.366158  0.007999 -0.162510
+throughput       -0.045191    1.000000      0.150122          0.013147 -0.624376 -0.095781
+packets_lost     -0.378711    0.150122      1.000000          0.944896 -0.020199 -0.008957
+packet_loss_rate -0.366158    0.013147      0.944896          1.000000  0.059594  0.004136
+jitter            0.007999   -0.624376     -0.020199          0.059594  1.000000  0.344274
+speed            -0.162510   -0.095781     -0.008957          0.004136  0.344274  1.000000
+
+4.1. QOE CORRELATION ANALYSIS
+---------------------------
+
+Correlations with QoE (from strongest positive to strongest negative):
+jitter: 0.0080 - Very weak correlation
+throughput: -0.0452 - Very weak correlation
+speed: -0.1625 - Very weak correlation
+packet_loss_rate: -0.3662 - Weak correlation
+packets_lost: -0.3787 - Weak correlation
+
+5. DATA DIVERSITY ASSESSMENT
+==========================
+
+Overall Assessment:
+Overall range coverage: 79.74%
+The dataset has good coverage but with some gaps.
+
+Key metrics with poorest coverage:
+- packets_lost: 36.67% coverage
+- throughput: 80.00% coverage
+- packet_loss_rate: 86.67% coverage
+
+6. CONCLUSION AND RECOMMENDATIONS
+===============================
+
+The dataset appears to have good diversity and coverage for training QoE prediction models.
+
+Specific recommendations for improving the dataset:
+1. Collect more data for packets_lost in the identified gap regions
+
+
+=================================================
+                END OF REPORT                   
+=================================================
